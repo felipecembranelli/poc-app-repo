@@ -28,17 +28,17 @@ jobs:
           echo "[DUMMY] Event: ${{ github.event_name }}"
           echo "[DUMMY] Ref: ${{ github.ref }}"
 
-  mandatory_ci:
-    name: mandatory-ci
-    needs: dummy_ping
-    uses: felipecembranelliorg/platform-devops-poc/.github/workflows/dotnet-ci.yml@v1
-    with:
-      dotnet_version: '9.0.x'
-      solution_path: './src/MyApp.sln'
-      run_tests: true
-      build_configuration: 'Release'
-      docker_image_name: 'myapp-api'
-    secrets: inherit
+  # mandatory_ci:
+  #   name: mandatory-ci
+  #   needs: dummy_ping
+  #   uses: felipecembranelliorg/platform-devops-poc/.github/workflows/dotnet-ci.yml@v1
+  #   with:
+  #     dotnet_version: '9.0.x'
+  #     solution_path: './src/MyApp.sln'
+  #     run_tests: true
+  #     build_configuration: 'Release'
+  #     docker_image_name: 'myapp-api'
+  #   secrets: inherit
 
   # deploy_dev:
   #   name: deploy-dev
