@@ -18,8 +18,19 @@ permissions:
   id-token: write
 
 jobs:
+  dummy_ping:
+    name: dummy-ping
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo workflow execution
+        run: |
+          echo "[DUMMY] Workflow is running"
+          echo "[DUMMY] Event: ${{ github.event_name }}"
+          echo "[DUMMY] Ref: ${{ github.ref }}"
+
   mandatory_ci:
     name: mandatory-ci
+    needs: dummy_ping
     uses: felipecembranelliorg/platform-devops-poc/.github/workflows/dotnet-ci.yml@v1
     with:
       dotnet_version: '9.0.x'
