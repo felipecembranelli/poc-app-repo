@@ -19,7 +19,7 @@ permissions:
 jobs:
   mandatory_ci:
     name: mandatory-ci
-    uses: your-org/platform-workflows/.github/workflows/dotnet-ci.yml@v1
+    uses: felipecembranelliorg/platform-devops-poc/.github/workflows/dotnet-ci.yml@v1
     with:
       dotnet_version: '9.0.x'
       solution_path: './src/MyApp.sln'
@@ -32,7 +32,7 @@ jobs:
     name: deploy-dev
     if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
     needs: mandatory_ci
-    uses: your-org/platform-workflows/.github/workflows/aks-deploy.yml@v1
+    uses: felipecembranelliorg/platform-devops-poc/.github/workflows/aks-deploy.yml@v1
     with:
       environment_name: dev
       aks_cluster_name: aks-dev-01
@@ -48,7 +48,7 @@ jobs:
     needs: mandatory_ci
     environment:
       name: staging
-    uses: your-org/platform-workflows/.github/workflows/aks-deploy.yml@v1
+    uses: felipecembranelliorg/platform-devops-poc/.github/workflows/aks-deploy.yml@v1
     with:
       environment_name: staging
       aks_cluster_name: aks-stage-01
@@ -64,7 +64,7 @@ jobs:
     needs: mandatory_ci
     environment:
       name: production
-    uses: your-org/platform-workflows/.github/workflows/aks-deploy.yml@v1
+    uses: felipecembranelliorg/platform-devops-poc/.github/workflows/aks-deploy.yml@v1
     with:
       environment_name: production
       aks_cluster_name: aks-prod-01
